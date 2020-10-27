@@ -3,7 +3,7 @@ Simple project meant to demonstrate how to lock and unlock landscape mode dynami
 
 ## Usage
 Call the singleton object to lock and unlock the app, such as for a specific view controller:
-```
+```swift
 // App locked to portrait, but this VC is to be an exception.
  override func viewDidLoad() {
      super.viewDidLoad()
@@ -18,7 +18,7 @@ Call the singleton object to lock and unlock the app, such as for a specific vie
 
 ## Implementation
 This works by adding a logical 'backdoor' to the supported interfaces method in the AppDelegate:
-```
+```swift
 func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
     return RotationController.shared.isUnlocked 
         ? .allButUpsideDown : .portrait
@@ -26,7 +26,7 @@ func application(_ application: UIApplication, supportedInterfaceOrientationsFor
 ```
 
 The `RotationController` is merely an implementation of a protocol, `OrientationLockDelegate`:
-```
+```swift
 protocol OrientationLockDelegate {
     func lock()
     func unlock()
